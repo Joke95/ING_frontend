@@ -10,8 +10,16 @@
 			</div>
 			
 			<div class="col-md-5 panel twocol">
-			  <h2>Option to upload converstations</h2>
-			  <p>This is some text.</p>
+				<h2>Option to upload converstations</h2>
+				<form action="upload.php" method="post" enctype="multipart/form-data">
+					<div class="div_line">
+						Select the conversations to upload:
+						<input type="file" name="fileToUpload" id="fileToUpload">
+					</div>
+					<div class="div_line">
+						<input type="submit" value="Upload conversations" name="submit">
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

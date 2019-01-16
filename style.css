@@ -20,13 +20,58 @@ p{
 	line-height:1.5;
 	color:#333;
 }
-button{
+button, input[type=submit]{
 	font-size:16px;
-	font-size:1 rem;
+	font-size: 1rem;
 	font-weight: 700;
-	line-height:1.5;
-	background-color#ff66200;
-	color: #fff;
+	line-height: 1.5;
+	cursor: pointer;
+	
+	position: relative;
+	display: inline-block;
+	border-radius: 6px;
+	background-image: none;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	margin-bottom: 0;
+	cursor: pointer;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.5;
+	padding: 4px 10px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+
+	
+	
+	border: 1px solid transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+	-webkit-transition-duration: .1s;
+	-o-transition-duration: .1s;
+	transition-duration: .1s;
+	-webkit-transition-property: background-color;
+	-o-transition-property: background-color;
+	transition-property: background-color;
+	-webkit-transition-timing-function: ease;
+	-o-transition-timing-function: ease;
+	transition-timing-function: ease;
+
+	border-top-color: #ffc099;
+	border-bottom-color: #b34500;
+	background: #FF6200;
+	color: #FFF;
+}
+button:hover {
+	background: #FFF;
+	border-color: #ADADAD;
+	color: #333;
+	border-color: #FF6200;
+	color: #FF6200;
 }
 .panel{
 	border: 1px solid #EBEBEB;
@@ -54,10 +99,9 @@ button{
 }
 .nav-link:hover{
 	color:black;
-}
-.nav-item:hover{
 	text-decoration: underline;
 }
+
 .active:hover{
 	color:#ff6200;
 	text-decoration:none;
@@ -108,7 +152,10 @@ nav{
 .twocol{
 	margin:20px;
 }
-
+.onecol{
+	float: none;
+    margin: 20px auto;
+}
 
 /*questions*/
 .likert li {
@@ -117,6 +164,41 @@ nav{
   padding-left:0px;
   list-style-type: none;
 }
+
+/*login*/
+.div_line{
+	clear:right;
+}
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=file] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+#login_button{
+  padding: 14px 20px;
+  margin: 8px 0;
+  width: 50%;
+}
+
+button:hover {
+  
+}
+
+.container {
+  padding: 16px;
+}
+
+
+
+
+
+
 
 
 

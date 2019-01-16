@@ -1,6 +1,6 @@
 <?php
 	$base_url = "localhost";
-	$loggedin = false;
+	$loggedin = true;
 ?>
 
 <!DOCTYPE html>
