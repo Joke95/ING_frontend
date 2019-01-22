@@ -1,7 +1,6 @@
 <?php include 'header.php';?>
 
 <?php
-$colors = array("red", "green", "blue", "yellow");
 $conversation = array(
 "[SYSTEM] Hello , welcome to the Cambridge restaurant system? You can ask for restaurants by area , price range or food type . How may I help you?",
 "[USER]   cheap restaurant in the south part of town",
@@ -43,7 +42,6 @@ $conversation = array(
 							$tem++;
 						}?>
 					</div>
-				
 			</div>
 
 			<div class="col-md-5 panel twocol">
@@ -89,7 +87,7 @@ $conversation = array(
 				<div class="div_line second_question" id="dissatisfied">
 					<p >
 						Why do you think that the user wasn’t satisfied? </br>
-						Please select the sentence(es) where this occurs
+						Please select the sentence(es) where this occurs.
 					</p>
 				</div>
 				<button type="button" >Exit</button> 
@@ -103,15 +101,15 @@ $conversation = array(
 <div id="popover-content-popover" class="hide">
 	<ul id="popover-content-popover">
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_satisfaction' value='User error'>
+			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='User error'>
 			<label>User error</label>
 		</li>
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_satisfaction' value='Not understanding'>
+			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Not understanding'>
 			<label>Not understanding </label>
 		</li>
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_satisfaction' value='Other'>
+			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Other'>
 			<label>iets</label>
 		</li>
 	</ul>
@@ -131,6 +129,7 @@ $(document).ready(function(){
 		return $('#popover-content-popover').html();
 	  }
 	});
+	
 });
 
 $('#selectAll').click(function() {
@@ -164,12 +163,9 @@ $('.radio_sat').click(function() {
 		$( "#selectAll" ).prop('disabled', true);
 	};
 });
-$('.radio_reason').click(function() {
-	if($(".radio_reason" ).prop('checked')) {
-        $("#ok").prop('disabled', false);
-    };
-	
-});
+$('.radio_reason').on('click',function() {
+		alert("I am an alert box!");	
+	});
 </script>
 
 <?php include 'footer.php';?>

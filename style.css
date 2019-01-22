@@ -2,7 +2,7 @@
 /*----- 		Made By: Joke van Ede 		 -----*/
 
 /*------ Conversation ------*/
-#deselectAll:disabled, #selectAll:disabled, #ok{
+#deselectAll:disabled, #selectAll:disabled, #ok:disabled{
 	background-color:#fff;
 	color:#ff6200;
 	border:1px solid #ff6200;
