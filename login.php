@@ -3,7 +3,7 @@
 
 <section>
 	<div class="container">
-		<div class="row">
+		<div class="row justify-content-md-center">
 					
 			<div class="col-md-5 panel onecol">
 			  <h2>Log in</h2>

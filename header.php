@@ -26,8 +26,13 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
 
+<!-- Own JavaScript -->
+<script src="http://<?php echo $base_url;?>/jquery.js"></script> 
+
  <!-- Own stylesheet -->
+<link rel="stylesheet" href="http://<?php echo $base_url;?>/ING_style.css">
 <link rel="stylesheet" href="http://<?php echo $base_url;?>/style.css">
+
 
 <title>ING project H1</title>
 </head>
@@ -36,7 +41,7 @@
 <body>
 <header>
 	<nav class="navbar navbar-expand-sm bg-light justify-content-left">
-		<div class="container">
+		<div class="container banner">
 			<!-- Brand -->
 			<span class="logo">
 				<a class="navbar-brand" href="#">
@@ -46,7 +51,7 @@
 		</div>
 	</nav> 
 	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
+		<div class="container banner">
 			<img src="http://<?php echo $base_url;?>/Chatbot.png" alt="ING chatbot" class="banner_img"> 
 		</div>
 	</div>
@@ -72,7 +77,7 @@
 						if($loggedin === true):
 					?>
 						<li class="nav-item">
-							<a class="nav-link" href="http://<?php echo $base_url;?>/admin_panel.php">Admin panel</a>
+							<a class="nav-link" href="http://<?php echo $base_url;?>/admin_panel1.php">Dashboard</a>
 						</li>					
 						<li class="nav-item">
 							<a class="nav-link" href="http://<?php echo $base_url;?>/import_data.php">Import data</a>

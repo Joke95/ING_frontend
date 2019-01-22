@@ -1,0 +1,158 @@
+/*----- 			ING Style sheet 		  -----*/
+/*----- Copied from ING.nl at January of 2019 -----*/
+/*----- 		Made By: Joke van Ede 		  -----*/
+
+
+/*----- ING color:#ff6200; -----*/
+/*----- General Style -----*/
+body{
+	background-color:#f5f5f5;
+}
+section{
+	border-radius: 5px;
+}
+h2{
+	font-size:24px;
+	font-size:1.5 rem;
+	font-weight: 700;
+	line-height:1.3;
+	color:#ff6200;
+}
+p{
+	font-size:16px;
+	font-size:1 rem;
+	font-weight: 400;
+	line-height:1.5;
+	color:#333;
+}
+button, input[type=submit]{
+	font-size:16px;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.5;
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	border-radius: 6px;
+	background-image: none;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	margin-bottom: 0;
+	cursor: pointer;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.5;
+	padding: 4px 10px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+
+	border: 1px solid transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+	-webkit-transition-duration: .1s;
+	-o-transition-duration: .1s;
+	transition-duration: .1s;
+	-webkit-transition-property: background-color;
+	-o-transition-property: background-color;
+	transition-property: background-color;
+	-webkit-transition-timing-function: ease;
+	-o-transition-timing-function: ease;
+	transition-timing-function: ease;
+
+	border-top-color: #ffc099;
+	border-bottom-color: #b34500;
+	background: #FF6200;
+	color: #FFF;
+}
+button:hover {
+	background: #FFF;
+	border-color: #ADADAD;
+	color: #333;
+	border-color: #FF6200;
+	color: #FF6200;
+}
+/*------ Logo ------*/
+.navbar-brand{
+	text-align:left;
+}
+.logo img{
+	font-size: 32px;
+	font-size: 2rem;
+	margin-right: 5px;
+	line-height: 1;
+	vertical-align: bottom;
+	white-space: nowrap;
+	height: 33px;
+}
+/*------ Banner ------*/
+.banner{
+	padding:0px;
+}
+.jumbotron{
+	margin-bottom: 0px;
+	background-color: white;
+	padding:0px;
+	text-align:center;
+	border-bottom: 1px solid #ff6200;
+}
+.banner_img{
+	height: auto;
+	max-height: 300px;
+}
+
+/*------ Menu bar ------*/
+.nav-item{
+	color: #5d5d5d ;
+	font-size: 21px;
+	font-size: 1.3125rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+.nav-link{
+	color:black;
+}
+.nav-link.active{
+	color:#ff6200;
+	border-bottom: 3px solid #FF6200;
+	font-weight: 600;
+}
+.nav-link:hover{
+	color:black;
+	text-decoration: underline;
+}
+.active:hover{
+	color:#ff6200;
+	text-decoration:none;
+}
+nav{
+	background-color: #EBEBEB;
+}
+.menu{
+	background-color:#FFF;
+	-webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,.15);
+	box-shadow: 0 3px 0 0 rgba(0,0,0,.15);	
+}
+.navbar-nav{
+	margin:auto;
+}
+
+/*------ Sections ------*/
+.twocol{
+	margin:20px;
+}
+.onecol{
+	float: none;
+    margin: 20px auto;
+}
+.panel{
+	border: 1px solid #EBEBEB;
+	box-shadow: 0 3px 0 0 rgba(0,0,0,.15);
+	border-radius: 5px;
+	margin: 5px;
+	background-color:#fff;
+	padding:17px 20px;
+}
