@@ -77,7 +77,7 @@
 						if($loggedin === true):
 					?>
 						<li class="nav-item">
-							<a class="nav-link" href="http://<?php echo $base_url;?>/admin_panel1.php">Dashboard</a>
+							<a class="nav-link" href="http://<?php echo $base_url;?>/admin_panel.php">Dashboard</a>
 						</li>					
 						<li class="nav-item">
 							<a class="nav-link" href="http://<?php echo $base_url;?>/import_data.php">Import data</a>

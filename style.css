@@ -51,13 +51,14 @@
 	border:none;
 	padding:0;
 	border-radius:0;
-	vertical-align: middle;
+	/*vertical-align: middle;*/
 	background-size:cover;
 	background-color:transparent;
 	background-position:-10em -10em;
 	transition:.3s ease;
 	outline:0;
 }
+
 .hover_checklabel:hover {
 	background:#ddd;
 }
@@ -79,17 +80,21 @@
 .system label{
 	text-align:left;
 }
-/*------ :focus ------*/
 .div_conversation{
+	position:relative;
 	border: 1px solid #000;
 	border-radius:6px;
 	padding:2px;
 	width: auto; 
 	height: auto;
 	max-height:550px;
+	overflow-x: hidden;
 	overflow-y: scroll;
 	background-color: #f2f2f2;
+	
 }
+/*------ :focus ------*/
+
 @-webkit-keyframes change-color {
   0%   { background-color: #ff6200; opacity: 0.4;}
   100% { background-color: #f2f2f2; }
@@ -138,10 +143,11 @@
 #satisfied ul{
 	list-style-type: none;
 }
-#popover-content-popover {
+.popover-content-popover {
 	list-style-type: none;
 	padding:5px;
 	margin-bottom:0px;
+	
 }
 /*------ Login ------*/
 .div_line{
@@ -174,9 +180,9 @@ input[type=text], input[type=password], input[type=file] {
 	display: block;
 	margin-top:15px;
 }
-
-
-
+.banner{
+	padding:0px;
+}
 
 
 

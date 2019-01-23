@@ -20,12 +20,11 @@ $conversation = array(
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-5 panel twocol">
+				<h2>The converstation
+					<button type="button" id="deselectAll" >Deselect all</button> 
+					<button type="button" id="selectAll" >Select all</button> 
+				</h2>
 				<div class="div_conversation">
-					<h2>The converstation
-						
-						<button type="button" id="deselectAll">Deselect all</button> 
-						<button type="button" id="selectAll">Select all</button> 
-					</h2>
 						<?php
 						$tem = 0;
 						foreach ($conversation as $value) {
@@ -99,21 +98,21 @@ $conversation = array(
 </section>
 
 <div id="popover-content-popover" class="hide">
-	<ul id="popover-content-popover">
+	<ul class="popover-content-popover" >
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='User error'>
+			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='User error'>
 			<label>User error</label>
 		</li>
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Not understanding'>
+			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Not understanding'>
 			<label>Not understanding </label>
 		</li>
 		<li>
-			<input type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Other'>
+			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Other'>
 			<label>iets</label>
 		</li>
 	</ul>
-	<button type="button" id="ok" disabled>Ok</button> 
+	<button id="tem_btn" class="button_dis" type="button">Ok</button> 
 </div>
 <script>
 $(document).ready(function(){
@@ -123,12 +122,20 @@ $(document).ready(function(){
 	$('.checkbox').prop('disabled', true);
 	$( "#deselectAll" ).prop('disabled', true);
 	$( "#selectAll" ).prop('disabled', true);
+	
 	$("[data-toggle=popover]").popover({
 		html: true,
+		placement: 'right',
+		boundary:'viewport',
 		content: function() {
-		return $('#popover-content-popover').html();
-	  }
+			var id = this.id;
+			var html_string = jQuery($('#popover-content-popover').html());
+			html_string.children().children('#tem_input').attr('id', 'input' + id);
+			html_string.attr('id', 'button' + id);
+			return html_string;
+		}
 	});
+	$( ".button_dis" ).prop('disabled', true);
 	
 });
 
@@ -163,9 +170,14 @@ $('.radio_sat').click(function() {
 		$( "#selectAll" ).prop('disabled', true);
 	};
 });
-$('.radio_reason').on('click',function() {
-		alert("I am an alert box!");	
-	});
+$(document).on('click', '.radio_reason', function() {
+	var trimmed = this.id.substring(5);
+	var tem_trimmed = 'button' + trimmed;
+	$('#'+tem_trimmed).prop('disabled', false);	
+});
+$( ".button_dis" ).click(function() {
+	alert( "Handler for .click() called." );
+});
 </script>
 
 <?php include 'footer.php';?>
