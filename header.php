@@ -26,6 +26,10 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
 
+<!-- JavaScript and jQuery for the graphs -->
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
 <!-- Own JavaScript -->
 <script src="http://<?php echo $base_url;?>/jquery.js"></script> 
 

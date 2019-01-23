@@ -2,93 +2,53 @@
 <?php
 	$totalSatisfactionRate = 100;
 	 
-	$newVsReturningVisitorsDataPoints = array(
+	$SatisfiedvsDissatisfied = array(
 		array("y"=> 75, "name"=> "Satisfied", "color"=> "Green"),
-		array("y"=> 25, "name"=> "Unsatisfied", "color"=> "Red")
+		array("y"=> 25, "name"=> "Dissatisfied", "color"=> "Red")
 	);
 	 
-	$newVisitorsDataPoints = array(
-		array("x"=> 1420050600000 , "y"=> 33000),
-		array("x"=> 1422729000000 , "y"=> 35960),
-		array("x"=> 1425148200000 , "y"=> 42160),
-		array("x"=> 1427826600000 , "y"=> 42240),
-		array("x"=> 1430418600000 , "y"=> 43200),
-		array("x"=> 1433097000000 , "y"=> 40600),
-		array("x"=> 1435689000000 , "y"=> 42560),
-		array("x"=> 1438367400000 , "y"=> 44280),
-		array("x"=> 1441045800000 , "y"=> 44800),
-		array("x"=> 1443637800000 , "y"=> 48720),
-		array("x"=> 1446316200000 , "y"=> 50840),
-		array("x"=> 1448908200000 , "y"=> 51600)
-	);
-	 
-	$returningVisitorsDataPoints = array(
-		array("x"=> 1420050600000 , "y"=> 22000),
-		array("x"=> 1422729000000 , "y"=> 26040),
-		array("x"=> 1425148200000 , "y"=> 25840),
-		array("x"=> 1427826600000 , "y"=> 23760),
-		array("x"=> 1430418600000 , "y"=> 28800),
-		array("x"=> 1433097000000 , "y"=> 29400),
-		array("x"=> 1435689000000 , "y"=> 33440),
-		array("x"=> 1438367400000 , "y"=> 37720),
-		array("x"=> 1441045800000 , "y"=> 35200),
-		array("x"=> 1443637800000 , "y"=> 35280),
-		array("x"=> 1446316200000 , "y"=> 31160),
-		array("x"=> 1448908200000 , "y"=> 34400)
-	);
+
 ?>
 <script>
 window.onload = function() {
-	 
+	/* The doughnut chatbot graph*/ 
 	var totalSatisfactionRate = <?php echo $totalSatisfactionRate ?>;
-	var visitorsData = {
-		"Chatbor Satisfaction rate": [{
-			click: visitorsChartDrilldownHandler,
+	var satisfactionData = {
+		"Chatbot Satisfaction rate": [{
+			click: ChartClickEventHandler,
 			cursor: "pointer",
 			explodeOnClick: false,
 			innerRadius: "75%",
 			legendMarkerType: "square",
-			name: "New vs Returning Visitors",
+			name: "Satisfied vs Dissatisfied",
 			radius: "100%",
 			showInLegend: true,
-			startAngle: 90,
+			startAngle: 0,
 			type: "doughnut",
-			dataPoints: <?php echo json_encode($newVsReturningVisitorsDataPoints, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($SatisfiedvsDissatisfied, JSON_NUMERIC_CHECK); ?>
 		}],
-		"New Visitors": [{
-			color: "#E7823A",
-			name: "New Visitors",
-			type: "column",
-			xValueType: "dateTime",
-			dataPoints: <?php echo json_encode($newVisitorsDataPoints, JSON_NUMERIC_CHECK); ?>
-		}],
-		"Returning Visitors": [{
-			color: "#546BC1",
-			name: "Returning Visitors",
-			type: "column",
-			xValueType: "dateTime",
-			dataPoints: <?php echo json_encode($returningVisitorsDataPoints, JSON_NUMERIC_CHECK); ?>
-		}]
 	};
 	 
-	var newVSReturningVisitorsOptions = {
+	var SatisfiedvsDissatisfiedOptions = {
 		animationEnabled: true,
 		theme: "light2",
-		
-		
 		title: {
-			text: "Chatbot Satisfaction rate"
+			text: "Chatbot Satisfaction rate",
+			fontSize: 24,
+			fontColor: '#ff6200',
 		},
 		subtitles: [{
-			text: "Click on any sagement for more infomation",
-			backgroundColor: "#ff6200",
-			fontSize: 14,
-			fontColor: "white",
+			text: "Click on the parts for the reasons",
+			/*backgroundColor: "#ff6200",*/
+			fontSize: 16,
+			fontColor: 'black',
 			padding: 5
 		}],
 		legend: {
 			fontFamily: "calibri",
 			fontSize: 14,
+			horizontalAlign: "center", // left, center ,right 
+			verticalAlign: "top",  // top, center, bottom
 			itemTextFormatter: function (e) {
 				return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalSatisfactionRate * 100) + "%";  
 			}
@@ -96,85 +56,187 @@ window.onload = function() {
 		data: []
 	};
 	 
-	var visitorsDrilldownedChartOptions = {
-		animationEnabled: true,
-		theme: "light2",
-		axisX: {
-			labelFontColor: "#717171",
-			lineColor: "#a2a2a2",
-			tickColor: "#a2a2a2"
-		},
-		axisY: {
-			gridThickness: 0,
-			includeZero: false,
-			labelFontColor: "#717171",
-			lineColor: "#a2a2a2",
-			tickColor: "#a2a2a2",
-			lineThickness: 1
-		},
-		data: []
-	};
-	 
-	var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
-	chart.options.data = visitorsData["Chatbor Satisfaction rate"];
+	var chart = new CanvasJS.Chart("chartContainer_doughnut", SatisfiedvsDissatisfiedOptions);
+	chart.options.data = satisfactionData["Chatbot Satisfaction rate"];
 	chart.render();
 	 
-	function visitorsChartDrilldownHandler(e) {
+	function ChartClickEventHandler(e) {
 		//click event handler
-		chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
-		chart.options.data = visitorsData[e.dataPoint.name];
-		chart.options.title = { text: e.dataPoint.name }
-		chart.render();
+		if(e.dataPoint.name =="Satisfied"){
+			var reasons = "<ul><li>The system was able to answer the users’ question(s) : 25%</li>";
+			reasons += "<li>The system was able to interact with the user well: 35%</li>";
+			reasons += "<li>The user was able to talk to the system naturally : 35%</li>";
+			reasons += "<li>Other: 5%</li></ul>";
+			$( "#chartContainer_doughnut" ).html( "<h2>"+  e.dataPoint.name +"</h2>"+  reasons );
+			
+		}else{
+			var reasons = "<ul><li>The system was unable to understand the user : 25%</li>";
+			reasons += "<li>The user did not know how to talk to the system: 35%</li>";
+			reasons += "<li>The system did not have enough information available to answer the user: 35%</li>";
+			reasons += "<li>Other: 5%</li></ul>";
+			$( "#chartContainer_doughnut" ).html( "<h2>"+  e.dataPoint.name +"</h2>"+  reasons );
+		}
+		
 		$("#backButton").toggleClass("invisible");
 	}
 	 
 	$("#backButton").click(function() { 
 		$(this).toggleClass("invisible");
-		chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
-		chart.options.data = visitorsData["Chatbor Satisfaction rate"];
+		chart = new CanvasJS.Chart("chartContainer_doughnut", SatisfiedvsDissatisfiedOptions);
+		chart.options.data = satisfactionData["Chatbot Satisfaction rate"];
 		chart.render();
 	});
-	 
+	
+	/* The line graph for the satisfaction rate over time according to the annotators*/
+	var chart = new CanvasJS.Chart("chartContainer_Satisfaction_overtime", {
+		animationEnabled: true,
+		theme: "light2",
+		title:{
+			text: "Satisfaction rate over time",
+			fontSize: 24,
+			fontColor: '#ff6200',
+		},
+		axisY:{
+			includeZero: false,
+			title: "Satisfaction rate in %",
+		},
+		axisX:{
+		valueFormatString: "DD MMM",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+			}
+		},
+		legend:{
+			cursor:"pointer",
+			verticalAlign: "bottom",
+			horizontalAlign: "left",
+			dockInsidePlotArea: true
+		},
+		data: [{        
+			type: "line",       
+			dataPoints: [
+				{ x: new Date(2017, 0, 3), y: 51 },
+				{ x: new Date(2017, 0, 4), y: 56 },
+				{ x: new Date(2017, 0, 5), y: 54 },
+				{ x: new Date(2017, 0, 6), y: 55 },
+				{ x: new Date(2017, 0, 7), y: 54 },
+				{ x: new Date(2017, 0, 8), y: 69 },
+				{ x: new Date(2017, 0, 9), y: 65 },
+				{ x: new Date(2017, 0, 10), y: 66 },
+				{ x: new Date(2017, 0, 11), y: 63 },
+				{ x: new Date(2017, 0, 12), y: 67 },
+				{ x: new Date(2017, 0, 13), y: 66 },
+				{ x: new Date(2017, 0, 14), y: 56 },
+				{ x: new Date(2017, 0, 15), y: 64 },
+				{ x: new Date(2017, 0, 16), y: 57 }
+			]
+		}]
+	});
+	chart.render();
+	
+	/* The barchart for the 5 categories from strongly agree to strongly disagree*/
+	var chart = new CanvasJS.Chart("chartContainer_Barchart", {
+		animationEnabled: true,
+		theme: "light2", // "light1", "light2", "dark1", "dark2"
+		title:{
+			text: "Distribution of satisfaction",
+			fontSize: 24,
+			fontColor: '#ff6200',
+		},
+		axisY: {
+			title: "People in %"
+		},
+		data: [{        
+			type: "column",  
+			 
+			dataPoints: [      
+				{ y: 20,  label: "Strongly satisfied" , color:"green"},
+				{ y: 15,  label: "satisfied" , color:"lightgreen"},
+				{ y: 20,  label: "Neutral" , color:"yellow"},
+				{ y: 35,  label: "Dissatisfied" , color:"orange"},
+				{ y: 10,  label: "Strongly dissatisfied" , color:"red"},
+			]
+		}]
+	});
+	chart.render();
+	
+	/* The line graph for the satisfaction rate over time according to the model*/
+	var chart = new CanvasJS.Chart("chartContainer_Satisfaction_overtime_model", {
+		animationEnabled: true,
+		theme: "light2",
+		title:{
+			text: "Satisfaction rate over time",
+			fontSize: 24,
+			fontColor: '#ff6200',
+		},
+		axisY:{
+			includeZero: false,
+			title: "Satisfaction rate in %",
+		},
+		axisX:{
+		valueFormatString: "DD MMM",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+			}
+		},
+		legend:{
+			cursor:"pointer",
+			verticalAlign: "bottom",
+			horizontalAlign: "left",
+			dockInsidePlotArea: true
+		},
+		data: [{        
+			type: "line",       
+			dataPoints: [
+				{ x: new Date(2017, 0, 3), y: 51 },
+				{ x: new Date(2017, 0, 4), y: 56 },
+				{ x: new Date(2017, 0, 5), y: 54 },
+				{ x: new Date(2017, 0, 6), y: 55 },
+				{ x: new Date(2017, 0, 7), y: 54 },
+				{ x: new Date(2017, 0, 8), y: 69 },
+				{ x: new Date(2017, 0, 9), y: 65 },
+				{ x: new Date(2017, 0, 10), y: 66 },
+				{ x: new Date(2017, 0, 11), y: 63 },
+				{ x: new Date(2017, 0, 12), y: 67 },
+				{ x: new Date(2017, 0, 13), y: 66 },
+				{ x: new Date(2017, 0, 14), y: 56 },
+				{ x: new Date(2017, 0, 15), y: 64 },
+				{ x: new Date(2017, 0, 16), y: 57 }
+			]
+		}]
+	});
+	chart.render();
 }
 </script>
-<style>
-  #backButton {
-	border-radius: 4px;
-	padding: 8px;
-	border: none;
-	font-size: 16px;
-	background-color: #2eacd1;
-	color: white;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-  }
-  .invisible {
-    display: none;
-  }
-</style>
+
 <section>
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-5 panel twocol">
-				<h2>Chatbot performance</h2>
-				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+				<h2 class ="headText">Chatbot performance</h2>
+				<div class="chart" id="chartContainer_doughnut" style="height: 370px; width: 100%;"></div>
 				<button class="btn invisible" id="backButton">&lt; Back</button>
-				<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-				<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 				
-				<button data-toggle="collapse" data-target="#demo">View more</button>
-
-				<div id="demo" class="collapse">
-				Lorem ipsum dolor text....
+				<button class="viewMore" data-toggle="collapse" data-target="#chatbot">View more</button>
+				<div id="chatbot" class="collapse">
+					<h2 class ="headText">Extra information</h2>
+					<div class="chart" id="chartContainer_Satisfaction_overtime" style="height: 370px; width: 100%;"></div>
+				
+					<div class="chart" id="chartContainer_Barchart" style="height: 370px; width: 100%;"></div>
 				</div> 
-				
 			</div>
 			
 			<div class="col-md-5 panel twocol">
-			  <h2>Model performance</h2>
-			  <p>This is some text.</p>
+				<h2 class ="headText">Model performance</h2>
+				<div class="chart" id="chartContainer_Satisfaction_overtime_model" style="height: 370px; width: 100%;"></div>
+				
+				<button class="viewMore" data-toggle="collapse" data-target="#model">View more</button>
+				<div id="model" class="collapse">
+					<h2 class ="headText">Extra information</h2>
+					<p>Here needs text from Kira and Manon</p>
+				</div> 
 			</div>
 		</div>
 	</div>

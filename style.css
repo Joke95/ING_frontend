@@ -139,15 +139,21 @@
 	padding:10px;
 	border-top: 1px solid #ff6200;
 	margin-left: 10px;
+	position: relative;
+	display: block;
+
 }
 #satisfied ul{
 	list-style-type: none;
+	padding-left:5px;
 }
 .popover-content-popover {
 	list-style-type: none;
 	padding:5px;
 	margin-bottom:0px;
-	
+}
+#propertytype_other{
+	width:80%;
 }
 /*------ Login ------*/
 .div_line{
@@ -184,8 +190,27 @@ input[type=text], input[type=password], input[type=file] {
 	padding:0px;
 }
 
+/*------ Dashboard ------*/
+#backButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.invisible {
+    display: none;
+}
+.chart{
+	margin: 15px 3px;
+}
+.headText{
+	border-bottom: 3px solid #ccc;
+	padding:2px;
+}
+.viewMore{
+	margin: 15px 3px;
 
-
+}
 
 
 

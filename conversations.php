@@ -34,7 +34,7 @@ $conversation = array(
 								echo "<div class='con_line user'>";
 							}	
 								$style="disabled name='conversation' class='checkbox' id='check$tem'";
-								$popover= "title='Select the reason' data-toggle='popover' data-placement='right' data-container='body'" ;
+								$popover= "data-toggle='popover' data-placement='right' data-container='body'" ;
 								echo "<input type='checkbox' value='$value' $style $popover>";
 								echo "<label class='checklabel' for='check$tem' >$value</label>";
 							echo "</div>";
@@ -54,13 +54,13 @@ $conversation = array(
 					</p>
 					<div class="div_line likert">
 						<ul >
-							<li>Strongly disagree</li>
+							<li>Not satisfied at all</li>
 							<li><input type="radio" name="satisfaction" class="radio_sat" value="0" /></li>
 							<li><input type="radio" name="satisfaction" class="radio_sat" value="1" /></li>
 							<li><input type="radio" name="satisfaction" class="radio_sat" value="2" /></li>
 							<li><input type="radio" name="satisfaction" class="radio_sat" value="3" /></li>
 							<li><input type="radio" name="satisfaction" class="radio_sat" value="4" /></li>
-							<li>Strongly agree</li>
+							<li>Very satisfied</li>
 						</ul>
 					</div>
 				</div>
@@ -70,23 +70,31 @@ $conversation = array(
 					</p>
 					<ul > 
 						<li>
-							<input type='checkbox' name='reason_satisfaction' value='User error'>
-							<label>User error</label>
+							<input type='checkbox' name='reason_satisfaction' value='User'>
+							<label>The system was able to answer the users’ question(s)</label>
 						</li>
 						<li>
-							<input type='checkbox' name='reason_satisfaction' value='Not understanding'>
-							<label>Not understanding </label>
+							<input type='checkbox' name='reason_satisfaction' value='Interact'>
+							<label>The system was able to interact with the user well</label>
 						</li>
 						<li>
-							<input type='checkbox' name='reason_satisfaction' value='Other'>
-							<label></label>
+							<input type='checkbox' name='reason_satisfaction' value='Naturally'>
+							<label>The user was able to talk to the system naturally</label>
 						</li>
+						<li>
+							<label for="Other_satisfied">
+								<input type="checkbox" name="reason_satisfaction" id="Other_satisfied" value="Other">
+							    <input id="propertytype_other" name="propertytype_other" type="text" value="" placeholder="other" class="form-control" width="80%">  
+							</label>
+						</li>
+						<div class="checkbox" >
+							       
+						</div>
 					</ul>
 				</div>
 				<div class="div_line second_question" id="dissatisfied">
 					<p >
-						Why do you think that the user wasn’t satisfied? </br>
-						Please select the sentence(es) where this occurs.
+						Please select sentence(s) where you think the user would be dissatisfied
 					</p>
 				</div>
 				<button type="button" >Exit</button> 
@@ -100,16 +108,28 @@ $conversation = array(
 <div id="popover-content-popover" class="hide">
 	<ul class="popover-content-popover" >
 		<li>
-			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='User error'>
-			<label>User error</label>
+			<label>
+				<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Not understanding' width="80%">
+				The system was unable to understand the user
+			</label>
 		</li>
 		<li>
-			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Not understanding'>
-			<label>Not understanding </label>
+			<label>
+				<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='User error'>
+				The user did not know how to talk to the system
+			</label>
 		</li>
 		<li>
-			<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='Other'>
-			<label>iets</label>
+			<label>
+				<input id="tem_input" type='checkbox' class="radio_reason" name='reason_dissatisfaction' value='No information'>
+				The system did not have enough information available to answer the user
+			</label>
+		</li>
+		<li>
+			<label for="Other_dissatisfied">
+				<input type="checkbox" name="reason_satisfaction" id="Other_dissatisfied" value="Other">
+				<input id="propertytype_other" name="propertytype_other" type="text" value="" placeholder="other" class="form-control" width="70%">  
+			</label>
 		</li>
 	</ul>
 	<button id="tem_btn" class="button_dis" type="button">Ok</button> 
@@ -125,12 +145,13 @@ $(document).ready(function(){
 	
 	$("[data-toggle=popover]").popover({
 		html: true,
+		title: "Why do you think that the user was dissatisfied?",
 		placement: 'right',
 		boundary:'viewport',
 		content: function() {
 			var id = this.id;
 			var html_string = jQuery($('#popover-content-popover').html());
-			html_string.children().children('#tem_input').attr('id', 'input' + id);
+			html_string.children().children().children('#tem_input').attr('id', 'input' + id);
 			html_string.attr('id', 'button' + id);
 			return html_string;
 		}
